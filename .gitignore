@@ -1,0 +1,15 @@
+/build/
+/target/
+/disconf/
+vue-pc/node_modules/
+
+/src/main/webapp/WEB-INF/ftl/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+
+**.DS_Store
