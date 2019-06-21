@@ -25,12 +25,12 @@ module.exports = {
   },
   devServer: {
     disableHostCheck: true,
-    port: 5000,
+    port: 4000,
     // api转发
     proxy: {
       '/': {
         // 要修改请前往 package.json 中
-        target: 'http://127.0.0.1:9999',
+        target: 'http://127.0.0.1:8888',
         // target: 'https://cmgt.cheesestar.com',
         // 是否转发socket
         ws: false,
