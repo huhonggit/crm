@@ -1,0 +1,48 @@
+.el-submenu__title  {
+  color: #000;
+  height: 40px;
+  line-height: 40px;
+}
+
+/*菜单折叠*/
+.el-submenu>.el-submenu__title .el-submenu__icon-arrow{
+  -webkit-transform: rotateZ(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotateZ(-90deg);
+}
+/*菜单展开*/
+.el-submenu.is-opened>.el-submenu__title .el-submenu__icon-arrow {
+  -webkit-transform: rotateZ(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotateZ(0deg);
+}
+
+.el-submenu{
+  min-width:10px;
+  padding-right: 0 !important;
+}
+
+.el-menu-item {
+  color: #000;
+  height: 35px !important;
+  line-height: 35px !important;
+  min-width:10px !important;
+  padding-right: 0 !important;
+}
+.el-form-item__label{
+  color: #303133;
+}
+
+.el-form-item--mini.el-form-item, .el-form-item--small.el-form-item {
+  margin-bottom: 5px;
+}
+
+.el-form-item {
+  margin-bottom: 5px;
+}
+
+
+.el-form-item__error {
+  display: inline-block;
+  position: relative !important;
+}

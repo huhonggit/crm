@@ -1,9 +1,13 @@
 /build/
 /target/
 /disconf/
-vue-pc/node_modules/
 
-/src/main/webapp/WEB-INF/ftl/
+
+### Vue ###
+/crm-web/vue-pc/node_modules
+/crm-web/vue-pc/package-lock.json
+
+
 
 ### IntelliJ IDEA ###
 .idea
