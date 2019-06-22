@@ -8,6 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
+/**
+ * drouid 后台管理界面
+ * @author huhong
+ * @date 2019-06-22 17:34
+ */
 @Configuration
 public class DruidConfig {
     @Bean
@@ -24,6 +29,7 @@ public class DruidConfig {
         servletRegistrationBean.addInitParameter("resetEnable","false");  
         return servletRegistrationBean;
     }
+
 	@Bean
     public FilterRegistrationBean filterRegistrationBean() {
 		 FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());

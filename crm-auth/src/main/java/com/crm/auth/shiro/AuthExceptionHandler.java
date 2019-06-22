@@ -2,11 +2,11 @@ package com.crm.auth.shiro;
 
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.crm.common.exception.BusinessException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +21,10 @@ import java.util.Map;
  * @date 2019-06-22 15:39
  */
 public class AuthExceptionHandler implements HandlerExceptionResolver {
-    Log log = LogFactory.getLog(AuthExceptionHandler.class);
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthExceptionHandler.class);
+
+    @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception ex) {
 
         ModelAndView mv = new ModelAndView();
@@ -39,7 +41,7 @@ public class AuthExceptionHandler implements HandlerExceptionResolver {
             attributes.put("msg", "用户名密码不匹配");
         } else {
 
-            log.error(ex.getMessage(),ex);
+            LOGGER.error(ex.getMessage(),ex);
             if(ex instanceof BusinessException){
                 BusinessException businessException = (BusinessException) ex;
                 attributes.put("code", businessException.getCode());

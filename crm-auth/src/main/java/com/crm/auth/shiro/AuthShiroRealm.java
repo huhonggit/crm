@@ -19,6 +19,7 @@ import javax.annotation.Resource;
 
 /**
  * 用户验证
+ *
  * @author huhong
  * @date 2019-06-22 15:40
  */
@@ -37,6 +38,7 @@ public class AuthShiroRealm extends AuthorizingRealm {
 
     /**
      * 主要是用来进行身份认证的，也就是说验证用户输入的账号和密码是否正确
+     *
      * @param token token
      * @return org.apache.shiro.authc.AuthenticationInfo
      * @author huhong
@@ -46,28 +48,23 @@ public class AuthShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
         SimpleAuthenticationInfo authenticationInfo;
-        try{
-
-            //获取用户的输入的账号.
-            String username = (String) token.getPrincipal();
-            //通过username从数据库中查找 User对象，如果找到，没找到.
-            SysUser user = userService.getUserByUsername(username);
-
-            if (user.getStatus() != StatusType.enable){
-                throw new BusinessException(401,"账号已经被禁用");
-            }
-            authenticationInfo = new SimpleAuthenticationInfo(
-                    user,
-                    user.getPassword(), //密码
-                    getName()  //realm name
-            );
-            authenticationInfo.setCredentialsSalt(ShiroPasswordUtil.getSalt(user.getUsername()));
-        }catch (Exception e){
-            if (e instanceof BusinessException){
-                throw  e;
-            }
-            throw new BusinessException(401,"账号密码不匹配");
+        //获取用户的输入的账号.
+        String username = (String) token.getPrincipal();
+        //通过username从数据库中查找 User对象，如果找到，没找到.
+        SysUser user = userService.getUserByUsername(username);
+        if (user == null){
+            throw new AuthenticationException("账号密码不匹配");
         }
+
+        if ( user.getStatus() != StatusType.enable) {
+            throw new AuthenticationException("账号已经被禁用");
+        }
+        authenticationInfo = new SimpleAuthenticationInfo(
+                user,
+                user.getPassword(),
+                getName()
+        );
+        authenticationInfo.setCredentialsSalt(ShiroPasswordUtil.getSalt(user.getUsername()));
         return authenticationInfo;
     }
 }
