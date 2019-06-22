@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>crm-web</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>crm-web</name>
     <url>http://maven.apache.org</url>
 
