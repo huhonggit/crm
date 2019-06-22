@@ -1,5 +1,6 @@
 package com.crm;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -27,4 +28,7 @@ public class CrmApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(CrmApplication.class);
     }
+
+
+
 }

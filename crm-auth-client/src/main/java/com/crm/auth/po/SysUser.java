@@ -62,6 +62,9 @@ public class SysUser implements Serializable {
     private String pwdFlag;
 
 
+    public SysUser() {
+    }
+
     public String getId() {
         return id;
     }
