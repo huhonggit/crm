@@ -1,9 +1,6 @@
 package com.crm.auth.service;
 
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * 系统用户服务类
@@ -13,8 +10,5 @@ import javax.annotation.Resource;
 @Service
 public class SysUserService {
 
-
-    @Resource
-    private MongoTemplate mongoTemplate;
 
 }
