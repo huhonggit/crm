@@ -1,5 +1,6 @@
 package com.crm.auth.service;
 
+import com.crm.auth.po.SysUser;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,5 +11,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserService {
 
+    public SysUser getUserByUsername(String username) {
 
+
+        return null;
+    }
 }

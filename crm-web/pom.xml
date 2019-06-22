@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>crm-web</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>crm-web</name>
     <url>http://maven.apache.org</url>
 
@@ -19,13 +19,15 @@
             <artifactId>crm-auth</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
