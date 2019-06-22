@@ -15,6 +15,10 @@ public class JsonResult<T> implements Serializable {
 
     private T data;
 
+    public JsonResult(Integer code) {
+        this.code = code;
+    }
+
     public Integer getCode() {
         return code;
     }

@@ -52,7 +52,7 @@ public class LoginController {
             }
             return result.setCode(610).setMsg("账号密码不匹配");
         }
-        Cookie cookie = new Cookie("JSESSIONID", subject.getSession().getId().toString());
+        Cookie cookie = new Cookie("X-Token", subject.getSession().getId().toString());
         cookie.setPath("/");
         cookie.setSecure(false);
         cookie.setHttpOnly(true);
