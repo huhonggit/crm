@@ -1,14 +1,21 @@
-package com.crm.common.config;
+package com.crm.common.config.mongo;
 
 import com.crm.common.config.converter.BigDecimalToDecimal128Converter;
 import com.crm.common.config.converter.Decimal128ToBigDecimalConverter;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.CustomConversions;
 import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.core.convert.*;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
@@ -22,6 +29,38 @@ import java.util.List;
  */
 @Configuration
 public class MongoConfig{
+
+
+    private static final Logger logger = LoggerFactory.getLogger(MongoConfig.class);
+
+    @Bean
+    public MongoClientOptions mongoClientOptions(MongoOptionProperties mongoOptionProperties) {
+        if (mongoOptionProperties == null) {
+            return new MongoClientOptions.Builder().build();
+        }
+
+        return new MongoClientOptions.Builder()
+                .minConnectionsPerHost(mongoOptionProperties.getMinConnectionPerHost())
+                .connectionsPerHost(mongoOptionProperties.getMaxConnectionPerHost())
+                .threadsAllowedToBlockForConnectionMultiplier(mongoOptionProperties.getThreadsAllowedToBlockForConnectionMultiplier())
+                .serverSelectionTimeout(mongoOptionProperties.getServerSelectionTimeout())
+                .maxWaitTime(mongoOptionProperties.getMaxWaitTime())
+                .maxConnectionIdleTime(mongoOptionProperties.getMaxConnectionIdleTime())
+                .maxConnectionLifeTime(mongoOptionProperties.getMaxConnectionLifeTime())
+                .connectTimeout(mongoOptionProperties.getConnectTimeout())
+                .socketTimeout(mongoOptionProperties.getSocketTimeout())
+                .socketKeepAlive(mongoOptionProperties.getSocketKeepAlive())
+                .sslEnabled(mongoOptionProperties.getSslEnabled())
+                .sslInvalidHostNameAllowed(mongoOptionProperties.getSslInvalidHostNameAllowed())
+                .alwaysUseMBeans(mongoOptionProperties.getAlwaysUseMBeans())
+                .heartbeatFrequency(mongoOptionProperties.getHeartbeatFrequency())
+                .minConnectionsPerHost(mongoOptionProperties.getMinConnectionPerHost())
+                .heartbeatConnectTimeout(mongoOptionProperties.getHeartbeatConnectTimeout())
+                .heartbeatSocketTimeout(mongoOptionProperties.getSocketTimeout())
+                .localThreshold(mongoOptionProperties.getLocalThreshold())
+                .build();
+    }
+
 
 
     /**

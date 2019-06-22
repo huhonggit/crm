@@ -1,4 +1,4 @@
-package com.crm.common.config;
+package com.crm.common.config.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
