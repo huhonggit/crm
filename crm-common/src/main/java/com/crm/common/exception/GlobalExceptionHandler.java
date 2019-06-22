@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
@@ -68,8 +69,10 @@ public class GlobalExceptionHandler {
             //对验证异常的处理javax.validation.ConstraintViolationException
             ConstraintViolationException constraintViolationException = (ConstraintViolationException) ex;
             return new JsonResult(500).setMsg(constraintViolationException.getMessage());
+        } else if (ex instanceof NoHandlerFoundException) {
+            return new JsonResult(404).setMsg(ex.getMessage());
         } else {
-            return new JsonResult(500).setMsg("服务端异常");
+            return new JsonResult(500).setMsg("服务端异常:" + ex.getMessage());
         }
     }
 
