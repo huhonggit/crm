@@ -1,5 +1,6 @@
 package com.crm.auth.service;
 
+import com.alibaba.fastjson.JSON;
 import com.crm.auth.po.SysUser;
 import com.crm.common.enums.StatusType;
 import org.springframework.beans.factory.InitializingBean;
@@ -23,6 +24,16 @@ public class SysUserService implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        SysUser user = new SysUser();
+        user.setName("sd");
+        user.setStatus(StatusType.enable);
+
+        redisTemplate.opsForValue().set("a",user );
+
+
+        SysUser a = (SysUser) redisTemplate.opsForValue().get("a");
+        System.out.println("测试");
+        System.out.println(JSON.toJSONString(a));
 
     }
 }
