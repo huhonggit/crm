@@ -87,19 +87,8 @@
     .chatText {
         height: 160px;
     }
-    .message-time {
-        margin: 7px 0;
-        text-align: center;
-        > span {
-            display: inline-block;
-            padding: 0 18px;
-            font-size: 12px;
-            border-radius: 2px;
-            background-color: #dcdcdc;
-        }
-    }
     .message-main {
-        padding: 10px 15px;
+        padding: 3px 5px;
         overflow-y: auto;
         ul{
             padding-left: 3px;
@@ -108,7 +97,7 @@
             list-style-type:none;
         }
         .message-time {
-            margin: 7px 0;
+            margin: 1px 0;
             text-align: center;
 
             > span {
