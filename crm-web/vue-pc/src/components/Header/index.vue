@@ -77,7 +77,7 @@
             },
             logout() {
                 mAxios
-                    .get(`/v1/admin/login/pclogout`)
+                    .get(`/auth/logout`)
                     .then(() => {
                         this.$store.commit("setLoginStatus", false);
                         this.$router.replace("/Login");

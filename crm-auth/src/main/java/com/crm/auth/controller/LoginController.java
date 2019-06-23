@@ -39,7 +39,7 @@ public class LoginController {
 
     @ApiOperation(value = "登录")
     @GetMapping("/login")
-    public JsonResult<SysUser> pclogin(@RequestParam("username") String username,
+    public JsonResult<SysUser> login(@RequestParam("username") String username,
                                        @RequestParam("password") String password,
                                        HttpServletResponse response) {
         JsonResult<SysUser> result = new JsonResult<>();
@@ -57,7 +57,7 @@ public class LoginController {
                 throw e;
             }
         }
-        Cookie cookie = new Cookie("X-Token", subject.getSession().getId().toString());
+        Cookie cookie = new Cookie("JSESSIONID", subject.getSession().getId().toString());
         cookie.setPath("/");
         cookie.setSecure(false);
         cookie.setHttpOnly(true);
@@ -78,5 +78,17 @@ public class LoginController {
         SysUser userById = sysUserService.getUserById(user.getId());
         user.setPwdFlag(userById.getPwdFlag());
         return new JsonResult<SysUser>().setData(user);
+    }
+
+
+    @RequestMapping("logout")
+    public JsonResult logout(HttpServletResponse response) {
+        SecurityUtils.getSubject().logout();
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setPath("/");
+        cookie.setSecure(false);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+        return new JsonResult();
     }
 }

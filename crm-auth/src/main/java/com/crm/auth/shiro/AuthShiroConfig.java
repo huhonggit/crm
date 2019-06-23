@@ -97,10 +97,10 @@ public class AuthShiroConfig {
      */
     @Bean
     public SessionManager sessionManager() {
-        AuthSessionManager mySessionManager = new AuthSessionManager();
-//        mySessionManager.setSessionIdCookieEnabled(false);
-        mySessionManager.setSessionDAO(sessionDAO());
-        return mySessionManager;
+        AuthSessionManager authSessionManager = new AuthSessionManager();
+        authSessionManager.setSessionDAO(sessionDAO());
+        authSessionManager.setGlobalSessionTimeout(3600000L);
+        return authSessionManager;
     }
 
     /**
