@@ -32,6 +32,14 @@ public class DictService {
     @Resource
     private MongoTemplate mongoTemplate;
 
+    /**
+     * 保存目录
+     *
+     * @param name name
+     * @return com.crm.auth.po.Dict
+     * @author huhong
+     * @date 2019-06-23 14:13
+     */
     public Dict saveCatalog(String name) {
         Dict dict = new Dict();
         dict.setCode(String.valueOf(dict.getId()));
@@ -45,11 +53,25 @@ public class DictService {
 
     }
 
+    /**
+     * 通过字典代码加载字典
+     *
+     * @param code code
+     * @return com.crm.auth.vo.DictVo
+     * @author huhong
+     * @date 2019-06-23 14:13
+     */
     public DictVo loadDictVoByCode(String code) {
 
         return chacheDictVo(code);
     }
 
+    /**
+     * @param code code
+     * @return com.crm.auth.vo.DictVo
+     * @author huhong
+     * @date 2019-06-23 14:13
+     */
     private DictVo chacheDictVo(String code) {
         Dict dict = getDictByCode(code);
         DictVo vo = null;
@@ -73,22 +95,12 @@ public class DictService {
         return vo;
     }
 
-    public String getTextByCodeAndValue(String code, String value) {
-        DictVo dictVo = loadDictVoByCode(code);
-        String text = null;
-        for (DictItemVo item : dictVo.getItemList()) {
-            if (value.equals(item.getValue().toString())) {
-                text = item.getText();
-                break;
-            }
-        }
-        return text;
-    }
-
     /**
      * 获取默认跟目录
      *
-     * @return
+     * @return com.crm.auth.po.Dict
+     * @author huhong
+     * @date 2019-06-23 14:14
      */
     public Dict getRootCatalog() {
         Dict dict = mongoTemplate.findById(DictLoadService.ROOT_Id, Dict.class);
@@ -98,7 +110,9 @@ public class DictService {
     /**
      * 获取目录
      *
-     * @return
+     * @return java.util.List<com.crm.auth.po.Dict>
+     * @author huhong
+     * @date 2019-06-23 14:14
      */
     public List<Dict> loadCatalog() {
 
@@ -108,21 +122,53 @@ public class DictService {
         return catalog;
     }
 
+    /**
+     * 获取字典
+     *
+     * @param code code
+     * @return com.crm.auth.po.Dict
+     * @author huhong
+     * @date 2019-06-23 14:14
+     */
     public Dict getDictByCode(String code) {
 
         return mongoTemplate.findOne(Query.query(Criteria.where("code").is(code)), Dict.class);
 
     }
 
+    /**
+     * 保存字典
+     *
+     * @param dict dict
+     * @return com.crm.auth.po.Dict
+     * @author huhong
+     * @date 2019-06-23 14:15
+     */
     public Dict saveDict(Dict dict) {
         mongoTemplate.insert(dict);
         return dict;
     }
 
+    /**
+     * 通过Id获取字典
+     *
+     * @param id id
+     * @return com.crm.auth.po.Dict
+     * @author huhong
+     * @date 2019-06-23 14:15
+     */
     public Dict getDictById(String id) {
         return mongoTemplate.findById(id, Dict.class);
     }
 
+    /**
+     * 校验字典
+     *
+     * @param dict dict
+     * @return boolean
+     * @author huhong
+     * @date 2019-06-23 14:15
+     */
     public boolean checkDict(Dict dict) {
         Criteria where = Criteria.where("code").is(dict.getCode());
         if (!StringUtils.isEmpty(dict.getId())) {
@@ -132,12 +178,28 @@ public class DictService {
         return list.size() <= 0;
     }
 
+    /**
+     * 编辑字典
+     *
+     * @param dict dict
+     * @return com.crm.auth.po.Dict
+     * @author huhong
+     * @date 2019-06-23 14:15
+     */
     public Dict editDict(Dict dict) {
 
         mongoTemplate.save(dict);
         return null;
     }
 
+    /**
+     * 获取字典明细
+     *
+     * @param dictId dictId
+     * @return java.util.List<com.crm.auth.po.DictItem>
+     * @author huhong
+     * @date 2019-06-23 14:15
+     */
     public List<DictItem> getItemsByDictId(String dictId) {
 
         List<DictItem> list = mongoTemplate.find(Query.query(Criteria.where("dictId").is(dictId)), DictItem.class);
@@ -145,6 +207,14 @@ public class DictService {
         return list;
     }
 
+    /**
+     * 校验字典明细
+     *
+     * @param dictItem dictItem
+     * @return boolean
+     * @author huhong
+     * @date 2019-06-23 14:16
+     */
     public boolean checkDictItem(DictItem dictItem) {
         Criteria where = Criteria.where("value").is(dictItem.getValue()).and("dictId").is(dictItem.getDictId());
         if (StringUtils.isNotEmpty(dictItem.getId())) {
@@ -154,26 +224,48 @@ public class DictService {
         return list.size() <= 0;
     }
 
+    /**
+     * 保存字典明细
+     * @param dictItem dictItem
+     * @return com.crm.auth.po.DictItem
+     * @author huhong
+     * @date 2019-06-23 14:16
+     */
     public DictItem saveDictItem(DictItem dictItem) {
         mongoTemplate.save(dictItem);
         return dictItem;
     }
 
+    /**
+     * 编辑字典明细
+     * @param dictItem dictItem
+     * @return com.crm.auth.po.DictItem
+     * @author huhong
+     * @date 2019-06-23 14:16
+     */
     public DictItem editDictItem(DictItem dictItem) {
         mongoTemplate.save(dictItem);
         return dictItem;
     }
 
+    /**
+     * 获取字典明细
+     * @param id id
+     * @return com.crm.auth.po.DictItem
+     * @author huhong
+     * @date 2019-06-23 14:16
+     */
     public DictItem getDictItemById(String id) {
-        return mongoTemplate.findById(id,DictItem.class);
+        return mongoTemplate.findById(id, DictItem.class);
     }
 
     /**
-     * 查询字典信息 分页数据
-     *
-     * @param page
-     * @param dict
-     * @return
+     *  查询字典信息 分页数据
+     * @param page page
+     * @param dict dict
+     * @return com.crm.common.page.PageInfo<com.crm.auth.po.Dict>
+     * @author huhong
+     * @date 2019-06-23 14:16
      */
     public PageInfo<Dict> searchDict(BasePage page, Dict dict) {
         PageInfo<Dict> info = new PageInfo<>();
@@ -188,10 +280,10 @@ public class DictService {
         }
 
         Query query = Query.query(criteria);
-        Long total = mongoTemplate.count(query,Dict.class);
+        Long total = mongoTemplate.count(query, Dict.class);
         info.setTotal(total);
         skipLimitQuery(query, page);
-        List<Dict> list = mongoTemplate.find(query,Dict.class);
+        List<Dict> list = mongoTemplate.find(query, Dict.class);
 
         info.setList(list);
         return info;

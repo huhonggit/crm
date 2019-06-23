@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- *
+ * 字典初始化服务
  * @author huhong
- * @date 2019-06-23 13:36
+ * @date 2019-06-23 14:13
  */
 @Service
 public class DictLoadService implements InitializingBean {
@@ -27,6 +27,8 @@ public class DictLoadService implements InitializingBean {
 
     /**
      * 初始设置ROOT节点
+     * @author huhong
+     * @date 2019-06-23 14:12
      * @throws Exception
      */
     @Override
