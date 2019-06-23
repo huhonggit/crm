@@ -1,7 +1,7 @@
 <template>
     <div class="flex-row content-padding">
         <div style="width: 120px;">
-            <cg-button type="text" size="small" @click="addCatalog" perms="addCatalog">新增目录</cg-button>
+            <el-button type="text" size="small" @click="addCatalog" perms="addCatalog">新增目录</el-button>
             <el-tree :data="catalog" :highlight-current="true" :props="defaultProps" node-key="id" default-expand-all
                      :expand-on-click-node="false" @node-click="handleNodeClick"></el-tree>
         </div>
@@ -9,7 +9,7 @@
            <el-form :inline="true">
                <el-input v-model="dictSearch.name" :clearable="true" style="width: 200px" size="small" placeholder="字典名、代码"></el-input>
                <el-button style="margin-left: 5px" size="small" @click="searchDict" >查询</el-button>
-               <cg-button type="primary" style="margin-left: 5px" size="small" @click="addDict" perms="addDict">新增</cg-button>
+               <el-button type="primary" style="margin-left: 5px" size="small" @click="addDict" perms="addDict">新增</el-button>
                <!--<el-button type="primary" style="margin-left: 5px" size="small" @click="evictAllChache" >清除所有缓存</el-button>-->
            </el-form>
             <div style="margin-top: 5px;margin-bottom: 5px" class="flex-column">
@@ -46,7 +46,7 @@
         </div>
         <div class="flex-column" style="margin-left: 3px;">
             <el-form :inline="true">
-                <cg-button type="primary"  style="margin-left: 5px" size="small" @click="addDictItem" perms="addDictItem">新增明细</cg-button>
+                <el-button type="primary"  style="margin-left: 5px" size="small" @click="addDictItem" perms="addDictItem">新增明细</el-button>
             </el-form>
             <div style="margin-top: 5px;margin-bottom: 5px" class="flex-column">
                 <el-table

@@ -16,7 +16,7 @@
                 <el-input placeholder="请输入顺序" v-model.number="form.inx"></el-input>
             </el-form-item>
             <el-form-item>
-                <cg-button type="primary" @click="submit" perms="saveDictItem">保存</cg-button>
+                <el-button type="primary" @click="submit" perms="saveDictItem">保存</el-button>
                 <el-button @click="visible=false;">取消</el-button>
             </el-form-item>
         </el-form>

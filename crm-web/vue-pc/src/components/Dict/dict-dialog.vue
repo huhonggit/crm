@@ -36,7 +36,7 @@
             </el-form-item>
 
             <el-form-item>
-                <cg-button type="primary" @click="submit" perms="saveDict">保存</cg-button>
+                <el-button type="primary" @click="submit" perms="saveDict">保存</el-button>
                 <el-button @click="visible=false;">取消</el-button>
             </el-form-item>
         </el-form>

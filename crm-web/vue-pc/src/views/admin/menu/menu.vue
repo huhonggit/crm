@@ -45,7 +45,7 @@
                         </svg>
                     </template>
                 </el-table-column>
-                <cg-dict-table-column  prop="type" dict="menu.type" align="center" min-width="80" label="类型"/>
+                <hh-dict-table-column  prop="type" dict="menu.type" align="center" min-width="80" label="类型"/>
                 <el-table-column prop="sort" header-align="center" align="center" min-width="80" label="显示顺序"/>
                 <el-table-column prop="status" header-align="center" align="center" min-width="80" label="状态">
                     <template slot-scope="scope">

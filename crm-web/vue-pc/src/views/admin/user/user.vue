@@ -3,7 +3,7 @@
     <user-detail-dialog v-if="userDetailVisible" @childClose="childClose"
                             :userId="userId" :orgId="orgId"></user-detail-dialog>
         <div>
-            <cg-button type="primary" size="small" @click="openUserDialog(null)" perms="add">新增用户</cg-button>
+            <el-button type="primary" size="small" @click="openUserDialog(null)" perms="add">新增用户</el-button>
         </div>
         <div class="flex-column">
             <el-table  :data="gridData" v-loading="tableLoading" height="100%">
@@ -26,7 +26,7 @@
                 <el-table-column label="操作" min-width="120">
                     <template slot-scope="scope">
                         <el-button-group>
-                            <cg-button type="primary" size="small" @click="openUserDialog(scope.row.id)" perms="edit">编辑</cg-button>
+                            <el-button type="primary" size="small" @click="openUserDialog(scope.row.id)" perms="edit">编辑</el-button>
                             <!--<el-button type="success"  v-if="scope.row.status === 'disable'"  size="small" @click="handleModifyStatus(scope.row,'enable')">启用</el-button>-->
                             <!--<el-button type="danger"  v-if="scope.row.status === 'enable'" size="small" @click="handleModifyStatus(scope.row,'disable')">停用</el-button>-->
                         </el-button-group>

@@ -13,8 +13,7 @@
                     <el-input placeholder="请输入路由" :disabled="true" v-model="pName"></el-input>
                 </el-form-item>
                 <el-form-item  label="菜单类型：" prop="type">
-                    <cg-select v-model="form.type" dict="menu.type" placeholder="请选择类型" style="width: 100%;">
-                    </cg-select>
+                    <hh-select v-model="form.type" dict="menu.type" placeholder="请选择类型" style="width: 100%;"/>
                 </el-form-item>
                 <el-form-item label="路由：" prop="router">
                     <el-input placeholder="请输入路由" v-model="form.router"></el-input>
@@ -26,7 +25,7 @@
                     <el-input type="textarea" :rows="4" placeholder="请输入图标" v-model="form.icon"></el-input>
                 </el-form-item>
                 <el-form-item  label="状态：" prop="status">
-                    <cg-select v-model="form.status" dict="status.type" placeholder="请选择类型" style="width: 100%;"/>
+                    <hh-select v-model="form.status" dict="status.type" placeholder="请选择类型" style="width: 100%;"/>
                 </el-form-item>
                 <!--<el-form-item>-->
                     <!--<el-button type="primary" @click="submit">保存</el-button>-->

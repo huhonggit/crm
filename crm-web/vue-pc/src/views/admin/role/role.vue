@@ -7,8 +7,8 @@
 
         <el-form :inline="true">
             <el-input v-model="form.name" style="width: 200px" size="small" placeholder="名称"></el-input>
-            <cg-button type="primary" style="margin-left: 5px" size="small" @click="search" perms="search">查询</cg-button>
-            <cg-button type="primary" style="margin-left: 5px" size="small" @click="openRoleDialog(null)" perms="add">新增</cg-button>
+            <el-button type="primary" style="margin-left: 5px" size="small" @click="search" perms="search">查询</el-button>
+            <el-button type="primary" style="margin-left: 5px" size="small" @click="openRoleDialog(null)" perms="add">新增</el-button>
         </el-form>
         <div style="margin-top: 5px;" class="flex-column">
             <el-table

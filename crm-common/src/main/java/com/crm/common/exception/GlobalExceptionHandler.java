@@ -74,7 +74,7 @@ public class GlobalExceptionHandler {
         } else if (ex instanceof NoHandlerFoundException) {
             return new JsonResult(404).setMsg(ex.getMessage());
         } else {
-            return new JsonResult(500).setMsg("服务端异常:" + ex.getMessage());
+            return new JsonResult(500).setMsg("服务端异常");
         }
     }
 
