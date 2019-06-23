@@ -10,7 +10,6 @@
                <el-input v-model="dictSearch.name" :clearable="true" style="width: 200px" size="small" placeholder="字典名、代码"></el-input>
                <el-button style="margin-left: 5px" size="small" @click="searchDict" >查询</el-button>
                <el-button type="primary" style="margin-left: 5px" size="small" @click="addDict" perms="addDict">新增</el-button>
-               <!--<el-button type="primary" style="margin-left: 5px" size="small" @click="evictAllChache" >清除所有缓存</el-button>-->
            </el-form>
             <div style="margin-top: 5px;margin-bottom: 5px" class="flex-column">
                 <el-table
@@ -28,11 +27,6 @@
                     <el-table-column prop="name" label="名称" width="120"/>
                     <el-table-column prop="type" label="类型" width="50"/>
                     <el-table-column prop="info" label="说明"/>
-                    <!--<el-table-column prop="id" label="操作" width="50">-->
-                        <!--<template slot-scope="scope">-->
-                            <!--<a href="javascript:void(0)" @click="evictChache(scope.row.code)">清除</a>-->
-                        <!--</template>-->
-                    <!--</el-table-column>-->
                 </el-table>
             </div>
             <el-pagination
@@ -154,8 +148,6 @@
                                 this.loadCatalog();
                             }, 300);
 
-                        }else{
-                            this.$notify({title: '失败', message: res.msg, type: 'error'})
                         }
                     }).catch();
                 }).catch(() => { })
@@ -229,16 +221,6 @@
                 }, 300);
 
             },
-            // evictChache(code){
-            //     dictApi.evictChache(code).then(()=>{
-            //         this.$message.success('清楚成功！');
-            //     }).catch()
-            // },
-            // evictAllChache(){
-            //     dictApi.evictAllChache().then(res=>{
-            //         this.$message.success(res.msg);
-            //     }).catch()
-            // },
         },
         mounted () {
             this.loadCatalog();

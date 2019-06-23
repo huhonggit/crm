@@ -68,8 +68,6 @@
                           if(res.code === 200){
                               this.$notify({title: '成功', message: '保存成功！', type: 'success'})
                               this.$emit('itemclose');
-                          }else{
-                              this.$notify({title: '失败', message: res.errorMsg, type: 'error'})
                           }
                       }).catch()
                   }
@@ -86,8 +84,6 @@
                             if(res.code === 200){
                                 this.$notify({title: '成功', message: '修改成功！', type: 'success'})
                                 this.$emit('itemclose');
-                            }else{
-                                this.$notify({title: '失败', message: res.msg, type: 'error'})
                             }
                         }).catch()
                     }

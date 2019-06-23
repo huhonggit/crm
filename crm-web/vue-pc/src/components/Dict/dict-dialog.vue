@@ -12,13 +12,9 @@
             <el-form-item label="名称：" prop="name">
                 <el-input placeholder="请输入名称" v-model="form.name"></el-input>
             </el-form-item>
-            <!--<el-form-item label="拼音码：" prop="pym">-->
-            <!--<el-input placeholder="请输入代码" v-model="form.pym"></el-input>-->
-            <!--</el-form-item>-->
             <el-form-item  label="类型：" prop="type">
                 <el-select v-model="form.type"    placeholder="请选择">
                     <el-option label="字典" value="字典"/>
-                    <!--<el-option label="SQL" value="SQL"/>-->
                 </el-select>
             </el-form-item>
             <el-form-item v-if="form.type == '字典'" label="数据类型：" prop="dataType">
@@ -94,8 +90,6 @@
                           if(res.code === 200){
                               this.$notify({title: '成功', message: '保存成功！', type: 'success'})
                               this.$emit('close');
-                          }else{
-                              this.$notify({title: '失败', message: res.msg, type: 'error'})
                           }
                       }).catch()
                   }
@@ -112,8 +106,6 @@
                           if(res.code === 200){
                               this.$notify({title: '成功', message: '修改成功！', type: 'success'})
                               this.$emit('close');
-                          }else{
-                              this.$notify({title: '失败', message: res.errorMsg, type: 'error'})
                           }
                       }).catch()
                   }
