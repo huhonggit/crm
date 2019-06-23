@@ -10,7 +10,7 @@ export default {
     },
     loadButtons(router){
         return cgAxios.get(
-            `/v1/admin/menu/loadButtons?router=`+router
+            `/auth/menu/loadButtons?router=`+router
         )
     }
 }

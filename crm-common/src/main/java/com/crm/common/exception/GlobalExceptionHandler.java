@@ -42,7 +42,9 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public JsonResult handleOtherExceptions(final Exception ex, final WebRequest request, final
     HttpServletRequest httpServletRequest) {
-        if (!(ex instanceof MethodArgumentNotValidException)) {
+        if (ex instanceof BusinessException) {
+            LOGGER.error(ex.getMessage());
+        }else {
             LOGGER.error(ex.getMessage(), ex);
         }
         if (ex instanceof BusinessException) {

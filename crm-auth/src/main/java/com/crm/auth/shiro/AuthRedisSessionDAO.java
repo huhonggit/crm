@@ -9,6 +9,7 @@ import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -21,8 +22,8 @@ public class AuthRedisSessionDAO extends AbstractSessionDAO {
     Log log = LogFactory.getLog(AuthRedisSessionDAO.class);
     private final String redisKey = "crm:auth:sessionId";
 
-    @Autowired
-    RedisTemplate redisTemplate;
+    @Resource
+    private RedisTemplate redisTemplate;
 
     @Override
     protected Serializable doCreate(Session session) {
@@ -30,7 +31,7 @@ public class AuthRedisSessionDAO extends AbstractSessionDAO {
         Serializable id = super.generateSessionId(session);
         ((SimpleSession)session).setId(id);
         log.debug("doCreate session:" + id);
-        redisTemplate.opsForHash().put(redisKey, id, session);
+        redisTemplate.opsForHash().put(redisKey, id, (SimpleSession)session);
         return id;
     }
 

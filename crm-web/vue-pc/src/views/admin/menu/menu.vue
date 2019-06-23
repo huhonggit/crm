@@ -14,20 +14,20 @@
                 <el-col :span="4">
                     <el-button type="primary" size="small" @click="search">刷新</el-button>
                 </el-col>
-                <el-col :span="8">
-                    <el-upload
-                            ref="upload"
-                            action="/v1/admin/menu/uploadMenu"
-                            accept=".json"
-                            :multiple="false"
-                            :file-list="fileList"
-                            :on-success="uploadMenuSuccess"
-                            :on-error="uploadMenuError"
-                            :auto-upload="false">
-                        <cg-button slot="trigger" size="small" type="primary" perms="upload">选取文件</cg-button>
-                        <cg-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload" perms="upload">上传到服务器</cg-button>
-                    </el-upload>
-                </el-col>
+                <!--<el-col :span="8">-->
+                    <!--<el-upload-->
+                            <!--ref="upload"-->
+                            <!--action="/v1/admin/menu/uploadMenu"-->
+                            <!--accept=".json"-->
+                            <!--:multiple="false"-->
+                            <!--:file-list="fileList"-->
+                            <!--:on-success="uploadMenuSuccess"-->
+                            <!--:on-error="uploadMenuError"-->
+                            <!--:auto-upload="false">-->
+                        <!--<cg-button slot="trigger" size="small" type="primary" perms="upload">选取文件</cg-button>-->
+                        <!--<cg-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload" perms="upload">上传到服务器</cg-button>-->
+                    <!--</el-upload>-->
+                <!--</el-col>-->
 
             </el-row>
 
@@ -55,9 +55,9 @@
                 </el-table-column>
                 <el-table-column prop="op" header-align="center" align="center" min-width="110px" label="操作">
                     <template slot-scope="scope">
-                        <cg-button  @click="addMenu(scope.row,'edit')" type="text" size="mini" perms="edit"> 编辑</cg-button>
-                        <cg-button  @click="addMenu(scope.row,'add')" v-if="scope.row.type !== 'operation'" type="text" size="mini" perms="add">新增下级</cg-button>
-                        <cg-button  @click="delMenu(scope.row)" type="text" style="color: red" size="mini" perms="delete"> 删除</cg-button>
+                        <el-button  @click="addMenu(scope.row,'edit')" type="text" size="mini" perms="edit"> 编辑</el-button>
+                        <el-button  @click="addMenu(scope.row,'add')" v-if="scope.row.type !== 'operation'" type="text" size="mini" perms="add">新增下级</el-button>
+                        <el-button  @click="delMenu(scope.row)" type="text" style="color: red" size="mini" perms="delete"> 删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>

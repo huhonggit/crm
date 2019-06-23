@@ -145,7 +145,7 @@
         </el-form>
       </el-row>
       <el-row class="copyright">
-        <p>&copy; 2018 - {{ new Date().getFullYear() }}  成都创感时代</p>
+        <p>&copy; 2018 - {{ new Date().getFullYear() }}  xx</p>
       </el-row>
     </aside>
   </div>
@@ -203,13 +203,13 @@
         }
 
         this.loading = true;
-        axios.post(`/v1/admin/login/pclogin?username=${param.username}&password=${param.password}`).then(res => {
+        axios.get(`/auth/login?username=${param.username}&password=${param.password}`).then(res => {
                   if (res.status === 200 && res.data.code === 200) {
                     this.loadingText = "登录成功，正在跳转...";
                     let routerurl = "/home";
                     setTimeout(() => {
-                      this.$store.commit("setLoginStatus", true);
                       this.$router.push(routerurl);
+                      this.$store.commit('setLoginStatus', true)
                       // setTimeout(() => {
                       //   location.reload(true);
                       // }, 10);

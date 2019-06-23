@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 通用返回对象
+ *
  * @author huhong
  * @date 2019-06-21 16:57
  */
@@ -47,6 +48,8 @@ public class JsonResult<T> implements Serializable {
     }
 
     public JsonResult() {
+        this.code = 200;
+        this.msg = "调用成功！";
     }
 
     public JsonResult(Integer code, String msg) {

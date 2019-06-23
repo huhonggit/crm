@@ -41,22 +41,24 @@ window.__dicMap = {}
 
 router.beforeEach((to, from, next) => {
 
-  let operations = store.getters['getOperations'];
-  let router =to.path;
-  let operation = operations[router.substr(1)];
-  if (operation === undefined) {
-    cgApi.loadButtons(router).then(res => {
-      if(res){
-        let data = {};
-        data.key = router.substr(1)
-        data.value = res.data
-        store.commit("saveOperationItem",data)
-      }
-    }).catch();
+  if(to.path !== '/login'){
+    let operations = store.getters['getOperations'];
+    let router =to.path;
+    let operation = operations[router.substr(1)];
+    if (operation === undefined) {
+      cgApi.loadButtons(router).then(res => {
+        if(res){
+          let data = {};
+          data.key = router.substr(1)
+          data.value = res.data
+          store.commit("saveOperationItem",data)
+        }
+      }).catch();
+    }
   }
 
 
-  document.title = to.name || 'CGEDU-ADMIN'
+  document.title = to.name || 'CRM'
   next()
 })
 
@@ -72,7 +74,7 @@ new Vue({
       text: '正在初始化...',
     })
 
-    cgAxios.get('/v1/admin/login/loadLoginInfo').then(res => {
+    cgAxios.post('/auth/loadLoginInfo').then(res => {
       if (res.code !== 200) {
         throw new Error('login')
       }
