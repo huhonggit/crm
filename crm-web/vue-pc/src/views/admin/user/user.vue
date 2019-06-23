@@ -27,8 +27,8 @@
                     <template slot-scope="scope">
                         <el-button-group>
                             <el-button type="primary" size="small" @click="openUserDialog(scope.row.id)" perms="edit">编辑</el-button>
-                            <!--<el-button type="success"  v-if="scope.row.status === 'disable'"  size="small" @click="handleModifyStatus(scope.row,'enable')">启用</el-button>-->
-                            <!--<el-button type="danger"  v-if="scope.row.status === 'enable'" size="small" @click="handleModifyStatus(scope.row,'disable')">停用</el-button>-->
+                            <el-button type="success"  v-if="scope.row.status === 'disable'"  size="small" @click="handleModifyStatus(scope.row,'enable')">启用</el-button>
+                            <el-button type="danger"  v-if="scope.row.status === 'enable'" size="small" @click="handleModifyStatus(scope.row,'disable')">停用</el-button>
                         </el-button-group>
                     </template>
                 </el-table-column>
