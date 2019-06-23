@@ -155,7 +155,7 @@ public class DictService {
     }
 
     public DictItem saveDictItem(DictItem dictItem) {
-        mongoTemplate.insert(dictItem);
+        mongoTemplate.save(dictItem);
         return dictItem;
     }
 
