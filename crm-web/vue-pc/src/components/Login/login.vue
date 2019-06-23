@@ -210,9 +210,6 @@
                     setTimeout(() => {
                       this.$router.push(routerurl);
                       this.$store.commit('setLoginStatus', true)
-                      // setTimeout(() => {
-                      //   location.reload(true);
-                      // }, 10);
                     }, 30);
                   } else {
                     throw new Error(res.data.msg);
