@@ -9,6 +9,7 @@
                     <img :src="smallLogo" alt="">
                 </div>
             </div>
+
             <a :class="asideIsCollapse ? 'collapse' : ''" class="toggle" href="javascript:void(0)" @click="toggle">
                 <el-tooltip :content="asideIsCollapse ? '展开侧边栏' : '收起侧边栏'" effect="dark">
                     <i class="el-icon-d-arrow-left"/>
@@ -17,6 +18,9 @@
             <div class="org-name"></div>
         </div>
         <div class="control">
+            <el-badge :value="12" style="margin-right: 15px" >
+                <el-button @click="openChat" size="mini">聊天</el-button>
+            </el-badge>
             <el-dropdown @command="userHandle">
                 <div class="el-dropdown-link">
                     {{_.get(dicMap, 'name','用户')}}
@@ -29,6 +33,7 @@
             </el-dropdown>
         </div>
         <update-pwd v-if="flag" @close="close"/>
+        <chat-main v-if="chatShow" @close="close"/>
     </div>
 </template>
 
@@ -39,9 +44,11 @@
     import mAxios from "@/axios";
     import UpdatePwd from './updatePwd'
 
+    import  ChatMain from '@/views/chat/chatMain.vue'
+
 
     export default {
-        components: {UpdatePwd},
+        components: {UpdatePwd,ChatMain},
         comments: {
             UpdatePwd
         },
@@ -57,12 +64,14 @@
             return {
                 bigLogo,
                 smallLogo,
-                flag: false
+                flag: false,
+                chatShow:false
             }
         },
         methods: {
             close() {
                 this.flag = false
+                this.chatShow = false
             },
             toggle() {
                 this.$store.commit("toggleAside");
@@ -74,6 +83,9 @@
             },
             updatePwd() {
                 this.flag=true
+            },
+            openChat(){
+                this.chatShow = true
             },
             logout() {
                 mAxios
@@ -110,12 +122,10 @@
         .main {
             display: flex;
             height: 100%;
-
             .logo {
                 height: 100%;
                 width: 180px;
                 display: flex;
-
                 svg {
                     margin: auto 12px;
                     max-width: 100%;
