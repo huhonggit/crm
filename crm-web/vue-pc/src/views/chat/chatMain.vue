@@ -21,7 +21,7 @@
                         <ul >
                             <li v-for="item in messages">
                                 <p class="message-time">
-                                    <span>{{ item.date }}</span>
+                                    <span>{{ item.date | formatDate}}</span>
                                 </p>
                                 <div  :class="{ self: item.self }">
                                     <!--<img class="avatar" width="30" height="30"-->
@@ -115,7 +115,6 @@
                 display: inline-block;
                 padding: 0 14px;
                 font-size: 12px;
-                color: #fff;
                 border-radius: 2px;
                 background-color: #dcdcdc;
             }
