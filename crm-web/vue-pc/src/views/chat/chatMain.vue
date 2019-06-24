@@ -17,13 +17,18 @@
             </div>
             <div class=" flex-column chatMain">
                 <div class=" flex-column" style="background-color: #eee">
-                    <div class="message-main">
-                        <ul >
+                    <div ref="messageMain" class="message-main">
+                        <infinite-loading direction="top" @infinite="infiniteHandler">
+                            <span slot="no-more">
+                                 我们是有底线的
+                            </span>
+                        </infinite-loading>
+                        <ul>
                             <li v-for="item in messages">
                                 <p class="message-time">
                                     <span>{{ item.date | formatDate}}</span>
                                 </p>
-                                <div  :class="{ self: item.self }">
+                                <div :class="{ self: item.self }">
                                     <!--<img class="avatar" width="30" height="30"-->
                                     <!--:src="item.self ? user.img : session.user.img"/>-->
                                     <div class="avatar">张三</div>
@@ -35,7 +40,7 @@
 
                 </div>
                 <div class="chatText">
-                    <el-input type="textarea" :rows="7" style="width: 100%;height: 155px"
+                    <el-input type="textarea" :rows="7" style="width: 100%;height: 155px" @keyup.native="onKeyupHandle"
                               placeholder="   按 Ctrl + Enter 发送" v-model="content"></el-input>
                 </div>
             </div>
@@ -43,21 +48,26 @@
     </el-dialog>
 </template>
 <script>
+    import InfiniteLoading from 'vue-infinite-loading';
 
     export default {
         props: [],
+        components: {
+            InfiniteLoading
+        },
         data() {
             return {
                 visible: true,
                 content: '',
                 name: undefined,
                 messages: [
-                    {date: new Date(),
-                    content:'hello'
+                    {
+                        date: new Date(),
+                        content: 'hello'
                     },
                     {
                         date: new Date(),
-                        content:'hello hi',
+                        content: 'hello hi',
                         self: true
                     }
                 ]
@@ -69,6 +79,37 @@
             }
         },
         methods: {
+            infiniteHandler($state) {
+                setTimeout(() => {
+                    for (let i = 0; i < 3; i++) {
+
+                        this.messages.push({
+                            date: new Date(),
+                            content: 'hello ' + i,
+                            self: true
+                        })
+                    }
+                    // $state.loaded();
+                    $state.loaded();
+                    $state.complete();
+                }, 200);
+            },
+            onKeyupHandle(e) {
+                if (e.ctrlKey && e.keyCode === 13 && this.content.length) {
+                    //将消息放入到data中
+                    let temp = {};
+                    temp.date = new Date();
+                    temp.self = true
+                    temp.content = this.content
+                    this.messages.push(temp)
+                    this.content = '';
+                    //滚动到最底部
+                    let el = this.$refs.messageMain;
+                    this.$nextTick(() => {
+                        el.scrollTop = el.scrollHeight;
+                    });
+                }
+            },
             close() {
                 this.$emit('close');
             },
@@ -87,15 +128,19 @@
     .chatText {
         height: 160px;
     }
+
     .message-main {
         padding: 3px 5px;
+        height: 440px;
         overflow-y: auto;
-        ul{
+        ul {
             padding-left: 3px;
         }
+
         li {
-            list-style-type:none;
+            list-style-type: none;
         }
+
         .message-time {
             margin: 1px 0;
             text-align: center;
@@ -108,11 +153,13 @@
                 background-color: #dcdcdc;
             }
         }
+
         .avatar {
             float: left;
             line-height: 2.5;
             margin-right: 8px;
         }
+
         .message-text {
             display: inline-block;
             position: relative;
@@ -125,6 +172,7 @@
             word-break: break-all;
             background-color: #b2e281;
             border-radius: 4px;
+
             &:before {
                 content: " ";
                 position: absolute;
@@ -137,13 +185,16 @@
 
         .self {
             text-align: right;
+
             .avatar {
                 float: right;
                 line-height: 2.5;
                 margin-left: 8px;
             }
+
             .message-text {
                 background-color: #b2e281;
+
                 &:before {
                     right: inherit;
                     left: 100%;

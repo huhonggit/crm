@@ -18,9 +18,9 @@
             <div class="org-name"></div>
         </div>
         <div class="control">
-            <el-badge :value="12" style="margin-right: 15px" >
-                <el-button @click="openChat" size="mini">聊天</el-button>
-            </el-badge>
+            <!--<el-badge :value="12" style="margin-right: 15px" >-->
+                <!--<el-button @click="openChat" size="mini">聊天</el-button>-->
+            <!--</el-badge>-->
             <el-dropdown @command="userHandle">
                 <div class="el-dropdown-link">
                     {{_.get(dicMap, 'name','用户')}}
