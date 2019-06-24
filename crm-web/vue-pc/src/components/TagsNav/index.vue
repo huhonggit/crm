@@ -82,7 +82,7 @@
             closeAllTags() {
                 this.$store.commit('delete_all',null)
                 this.menuVisible = false
-                this.$router.push('/home');
+                this.$router.push('/');
             },
             handleScroll (offset) {
                 const outerWidth = this.$refs.tagsView.offsetWidth
@@ -136,11 +136,11 @@
                 }
             },
             isActive(route){
-                return route === this.activeIndex?true:false;
+                return route === this.activeIndex;
             },
             tabRemove(targetName) {
                 // 首页不可删除
-                if (targetName == '/home') {
+                if (targetName === '/') {
                     return;
                 }
                 this.$store.commit('delete_tabs', targetName);

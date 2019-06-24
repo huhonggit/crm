@@ -12,8 +12,8 @@ export default new Vuex.Store({
     isLogin: false,
     __dicMap: {},
     //以下参数用来实现Tab 页面系统
-    activeIndex: "/home",
-    options: [{ route: '/home', name: '首页' , children:false}],
+    activeIndex: "/",
+    options: [{ route: '/', name: '首页' , children:false}],
     operations: {},//控制按钮权限
 
   },
@@ -61,7 +61,7 @@ export default new Vuex.Store({
     delete_all(state, route) {
       if(route){//关闭其他
         console.log(route)
-        this.state.options= [{ route: '/home', name: '首页' , children:false}]
+        this.state.options= [{ route: '/', name: '首页' , children:false}]
         let  flag = true;
         this.state.options.forEach(item =>{
           if(item.route === route.route){
@@ -73,8 +73,8 @@ export default new Vuex.Store({
         }
         this.state.activeIndex = route.route
       }else{
-        this.state.options= [{ route: '/home', name: '首页' , children:false}]
-        this.state.activeIndex = '/home'
+        this.state.options= [{ route: '/', name: '首页' , children:false}]
+        this.state.activeIndex = '/'
       }
     },
     // 设置当前激活的tab

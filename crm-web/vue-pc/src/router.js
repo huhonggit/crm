@@ -13,7 +13,7 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            path: '/home',
+            path: '/',
             component: Home,
             name: '首页',
             meta: {

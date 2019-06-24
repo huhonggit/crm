@@ -206,7 +206,7 @@
         axios.get(`/auth/login?username=${param.username}&password=${param.password}`).then(res => {
                   if (res.status === 200 && res.data.code === 200) {
                     this.loadingText = "登录成功，正在跳转...";
-                    let routerurl = "/home";
+                    let routerurl = "/";
                     setTimeout(() => {
                       this.$router.push(routerurl);
                       this.$store.commit('setLoginStatus', true)
