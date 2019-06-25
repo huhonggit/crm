@@ -25,17 +25,8 @@
 		<module>crm-auth</module>
 		<module>crm-auth-client</module>
 		<module>crm-common</module>
+		<module>crm-netty-server</module>
 		<module>crm-web</module>
 	</modules>
-	
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

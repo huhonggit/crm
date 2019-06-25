@@ -3,7 +3,6 @@ package com.crm.auth.controller;
 import com.crm.auth.po.SysUser;
 import com.crm.auth.service.SysUserService;
 import com.crm.common.bo.JsonResult;
-import com.sun.tools.javac.main.Main;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
