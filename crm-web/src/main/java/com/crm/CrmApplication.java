@@ -1,6 +1,5 @@
 package com.crm;
 
-import com.alibaba.fastjson.parser.ParserConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author huhong
  * @date 2019-06-21 15:31
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.crm")
 @ServletComponentScan(basePackages = {"com.crm"})
 @EnableTransactionManagement
 @EnableScheduling

@@ -27,7 +27,7 @@ public class AckChatLauncher {
     @Resource
     private ServerConifg serverConifg;
 
-    @Value("${crm.zk.root}")
+    @Value("${crm.zk.root:}")
     private String zkRoot = "/crmroot";
 
     @Resource
@@ -70,7 +70,6 @@ public class AckChatLauncher {
         });
         server.start();
         LOGGER.info("启动 netty server 成功");
-
         registryZK(serverConifg);
     }
 
